@@ -21,8 +21,8 @@ namespace RevRegFinal.Controllers
 
             public ActionResult Login(string InputEmail, string InputPassword)
             {
-
-                    if (DataConnection.CheckLogInInfo(InputEmail, InputPassword))
+            StudentModel student = new StudentModel();
+                    if (DataConnection.CheckLogInInfo(student, InputEmail, InputPassword))
                     {
  
                         return View();

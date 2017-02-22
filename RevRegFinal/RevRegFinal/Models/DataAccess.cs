@@ -23,7 +23,7 @@ namespace RevRegFinal.Models
             connection = s;
         }
 
-        public static bool CheckLogInInfo(string email, string password)
+        public static bool CheckLogInInfo(StudentModel student, string email, string password)
         {
             string query = "SELECT * FROM STUDENTMODELS";
 
@@ -41,11 +41,11 @@ namespace RevRegFinal.Models
                 {
                     if ((string)item["password"] == password && (string)item["Email"] == email)
                     {
-                        //s.FullName = (string)item["FullName"];
+                        student.FullName = (string)item["FullName"];
                         
-                        //s.Major = (string)item["Major"];
-                        //s.StudentModelId = (int)item[0];
-                        //s.AddCourses(getStudentSchedule(s.StudentModelId));
+                        student.Major = (string)item["Major"];
+                        student.StudentModelId = (int)item[0];
+                        student.AddCourses(getStudentSchedule(student.StudentModelId));
                         return true;
                     }
                 }
@@ -159,7 +159,7 @@ namespace RevRegFinal.Models
         {
             Dictionary<string, CourseModel> schedule = new Dictionary<string, CourseModel>();
 
-            string query = $"Select * From REGISTRATION({idnum})";
+            string query = $"Select * From [REGISTRATION] WITH [StudentModelId] = {idnum};";
             try
             {
                 using (SqlConnection sqlcon = new SqlConnection(connection))
