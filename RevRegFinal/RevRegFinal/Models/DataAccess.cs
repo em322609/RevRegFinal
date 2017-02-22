@@ -42,10 +42,13 @@ namespace RevRegFinal.Models
                     if ((string)item["password"] == password && (string)item["Email"] == email)
                     {
                         student.FullName = (string)item["FullName"];
-                        
+                        student.Email = email;
+                        student.Password = password;
                         student.Major = (string)item["Major"];
                         student.StudentModelId = (int)item[0];
-                        student.AddCourses(getStudentSchedule(student.StudentModelId));
+                        
+                        
+                        //student.AddCourses(getStudentSchedule(student.StudentModelId));
                         return true;
                     }
                 }
@@ -124,7 +127,7 @@ namespace RevRegFinal.Models
                         if (tempid == idnum)
 
                         {
-                            string name = (string)reader["CourseName"];
+                            string name = tempid;
                             string startTime = (string)reader["timeOfDay"];
                             string Location = (string)reader["Location"];
                             int creditHours = (int)reader["CreditHours"];

@@ -9,7 +9,7 @@ namespace RevRegFinal.Controllers
     public class CourseController : Controller
     {
         // GET: Course
-        public ActionResult Index()
+        public ActionResult Courses()
         {
             return View();
         }

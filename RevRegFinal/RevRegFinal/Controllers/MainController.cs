@@ -22,10 +22,16 @@ namespace RevRegFinal.Controllers
             public ActionResult Login(string InputEmail, string InputPassword)
             {
             StudentModel student = new StudentModel();
+            
                     if (DataConnection.CheckLogInInfo(student, InputEmail, InputPassword))
                     {
- 
-                        return View();
+                ViewData["studentName"] = student.FullName;
+                
+
+                Dictionary<string, CourseModel> s = student.GetSchedule();
+                ViewData["dictionaryCount"] = s.Count;
+
+                return View(student);
                     }
                 
                 return Index();

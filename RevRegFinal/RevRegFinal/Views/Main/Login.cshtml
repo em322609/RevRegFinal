@@ -10,7 +10,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
- <title>Welcome @ViewData["studentName"]</title>
+ <title>Welcome @ViewData["studentName"] </title>
 </head>
 <body>
     <div> 
@@ -18,18 +18,13 @@
     </div>
     <div>
         
-        @using (Html.BeginForm("Courses", "Courses"))
+        @using (Html.BeginForm("Courses", "Course"))
         {
-            if (ViewData["courseList"] == null)
+            if (ViewData["dictionaryCount"].Equals(0))
             {
              <p>You are not currently signed up for classes. Please sign up here:<button class="btn btn-info" type="submit">Sign up</button></p>
             }
-             if (ViewData["courseList"] != null)
-             {
-            <ul>
-             
-            </ul>
-             }
+            
         }
 
 
