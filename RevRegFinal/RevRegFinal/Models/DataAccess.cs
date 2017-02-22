@@ -23,7 +23,7 @@ namespace RevRegFinal.Models
             connection = s;
         }
 
-        public static bool CheckLogInInfo(StudentModel s)
+        public static bool CheckLogInInfo(string email, string password)
         {
             string query = "SELECT * FROM STUDENTMODELS";
 
@@ -39,13 +39,13 @@ namespace RevRegFinal.Models
                 adapter.Fill(ds);
                 foreach (var item in ds.Tables[0].AsEnumerable())
                 {
-                    if ((string)item["password"] == s.Password && (string)item["Email"] == s.Email)
+                    if ((string)item["password"] == password && (string)item["Email"] == email)
                     {
-                        s.FullName = (string)item["FullName"];
+                        //s.FullName = (string)item["FullName"];
                         
-                        s.Major = (string)item["Major"];
-                        s.StudentModelId = (int)item[0];
-                        s.AddCourses(getStudentSchedule(s.StudentModelId));
+                        //s.Major = (string)item["Major"];
+                        //s.StudentModelId = (int)item[0];
+                        //s.AddCourses(getStudentSchedule(s.StudentModelId));
                         return true;
                     }
                 }
@@ -159,7 +159,7 @@ namespace RevRegFinal.Models
         {
             Dictionary<string, CourseModel> schedule = new Dictionary<string, CourseModel>();
 
-            string query = $"Select * From COURSEMODELS({idnum})";
+            string query = $"Select * From REGISTRATION({idnum})";
             try
             {
                 using (SqlConnection sqlcon = new SqlConnection(connection))

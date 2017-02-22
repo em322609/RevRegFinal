@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RevRegFinal.Models;
 
 namespace RevRegFinal.Controllers
 {
@@ -21,20 +22,12 @@ namespace RevRegFinal.Controllers
             public ActionResult Login(string InputEmail, string InputPassword)
             {
 
-               
-
-
-               /* foreach (var item in )
-                {
-                    if (InputEmail == item.Email && InputPassword == item.Password)
+                    if (DataConnection.CheckLogInInfo(InputEmail, InputPassword))
                     {
-                        ViewData["studentName"] = item.FullName;
-                        ViewData["courseList"] = item.CourseList;
-
-                        return View(item);
+ 
+                        return View();
                     }
-                }
-                */
+                
                 return Index();
             }
         }
