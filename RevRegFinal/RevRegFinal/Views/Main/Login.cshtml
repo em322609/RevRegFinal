@@ -1,0 +1,38 @@
+﻿@model RevRegFinal.Models.StudentModel
+
+@{
+    Layout = "~/Views/_IndexLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+ <title>Welcome @ViewData["studentName"]</title>
+</head>
+<body>
+    <div> 
+        <h1>Welcome @ViewData["studentName"]</h1>
+    </div>
+    <div>
+        
+        @using (Html.BeginForm("Courses", "Courses"))
+        {
+            if (ViewData["courseList"] == null)
+            {
+             <p>You are not currently signed up for classes. Please sign up here:<button class="btn btn-info" type="submit">Sign up</button></p>
+            }
+             if (ViewData["courseList"] != null)
+             {
+            <ul>
+             
+            </ul>
+             }
+        }
+
+
+    </div>
+</body>
+</html>
