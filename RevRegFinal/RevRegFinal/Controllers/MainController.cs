@@ -21,20 +21,24 @@ namespace RevRegFinal.Controllers
 
             public ActionResult Login(string InputEmail, string InputPassword)
             {
-            StudentModel student = new StudentModel();
+                    StudentModel student = new StudentModel();
             
-                    if (DataConnection.CheckLogInInfo(student, InputEmail, InputPassword))
+           if (DataConnection.CheckLogInInfo(student, InputEmail, InputPassword))
                     {
-                ViewData["studentName"] = student.FullName;
+                         ViewData["studentName"] = student.FullName;
                 
 
-                Dictionary<string, CourseModel> s = student.GetSchedule();
-                ViewData["dictionaryCount"] = s.Count;
+                         Dictionary<string, CourseModel> s = student.GetSchedule();
+                         ViewData["dictionaryCount"] = s.Count;
 
-                return View(student);
+                         return View(student);
                     }
-                
-                return Index();
+            else {
+                return RedirectToAction("Index",
+                    new { r = Request.Url.ToString() });
+            }
+
+            
             }
         }
 }

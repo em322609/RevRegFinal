@@ -20,11 +20,19 @@
         
         @using (Html.BeginForm("Courses", "Course"))
         {
-            if (ViewData["dictionaryCount"].Equals(0))
+            try
             {
+                if (ViewData["dictionaryCount"].Equals(0))
+                {
              <p>You are not currently signed up for classes. Please sign up here:<button class="btn btn-info" type="submit">Sign up</button></p>
+                }
             }
-            
+            catch(NullReferenceException ex)
+            {
+                System.Console.Write(ex);
+            }
+
+
         }
 
 
