@@ -15,6 +15,16 @@
 <body>
     <div> 
         <h1>Welcome @ViewData["studentName"]</h1>
+        <p>Email: @ViewData["studentEmail"]</p>
+        <p>Major: @ViewData["studentMajor"]</p>
+        @if(ViewData["enrollmentStatus"].Equals(false))
+        {
+            <p>Enrollment Status: PART TIME</p>
+        }
+        else
+        {
+            <p>Enrollment Status: FULL TIME</p>
+        }
     </div>
     <div>
         

@@ -29,6 +29,9 @@ namespace RevRegFinal.Controllers
                     {
                         ViewData["studentName"] = student.FullName;
                         ViewData["studentModelId"] = student.StudentModelId;
+                        ViewData["studentEmail"] = student.Email;
+                        ViewData["studentMajor"] = student.Major;
+                        ViewData["enrollmentStatus"] = student.enrollmentStatus;
                         ViewData["inputEmail"] = InputEmail;
                         ViewData["inputPassword"] = InputPassword;
 
