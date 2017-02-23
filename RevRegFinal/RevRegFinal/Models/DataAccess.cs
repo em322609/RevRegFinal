@@ -10,7 +10,7 @@ using RevRegFinal.Models;
 namespace RevRegFinal.Models
 {
    
-    public static class DataConnection
+    public static class DataAccess
     {
 
         private static string connection = "Data Source=revdb.camzcailekkc.us-west-2.rds.amazonaws.com,1433;Initial Catalog = RevRegMVC; Integrated Security = False; Persist Security Info=True;User ID = master; Password=12345678;Encrypt=False;";
@@ -23,7 +23,7 @@ namespace RevRegFinal.Models
             connection = s;
         }
 
-        public static bool CheckLogInInfo(StudentModel student, string email, string password)
+        public static bool verifyLogin(StudentModel student, string email, string password)
         {
             string query = "SELECT * FROM STUDENTMODELS";
 

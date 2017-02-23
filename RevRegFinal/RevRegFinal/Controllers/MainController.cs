@@ -23,7 +23,7 @@ namespace RevRegFinal.Controllers
             {
                     StudentModel student = new StudentModel();
             
-           if (DataConnection.CheckLogInInfo(student, InputEmail, InputPassword))
+           if (DataAccess.verifyLogin(student, InputEmail, InputPassword))
                     {
                         ViewData["studentName"] = student.FullName;
                         ViewData["studentModelId"] = student.StudentModelId;

@@ -74,7 +74,7 @@ namespace RevRegFinal.Models
         {
             if (course.isClosed.Equals(0))
             {
-                DataConnection.RegisterStudentForCourse(course.CourseModelId, StudentModelId);
+                DataAccess.RegisterStudentForCourse(course.CourseModelId, StudentModelId);
                 schedule.Add(course);
             }
             else
@@ -85,7 +85,7 @@ namespace RevRegFinal.Models
 
         public List<CourseModel> GetSchedule(int studentModelId)
         {
-            schedule = DataConnection.getStudentSchedule(studentModelId);
+            schedule = DataAccess.getStudentSchedule(studentModelId);
             return schedule;
         }
 

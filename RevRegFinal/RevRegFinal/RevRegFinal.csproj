@@ -200,12 +200,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Student\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Documents\Visual Studio 2015\Projects\DemoRevRegData\DemoRevRegData.DAO.csproj">
-      <Project>{df29bb63-a5d2-4575-9d3a-7c9430c56bdc}</Project>
-      <Name>DemoRevRegData.DAO</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -13,12 +13,12 @@ namespace RevRegFinal.Controllers
         public ActionResult Courses(int studentModelId, string InputEmail, string InputPassword)
         {
 
-            List<CourseModel> list = DataConnection.getCourses();
+            List<CourseModel> list = DataAccess.getCourses();
             ViewBag.list = list;
             ViewData["inputEmail"] = InputEmail;
             ViewData["inputPassword"] = InputPassword;
             ViewData["studentModelId"] = studentModelId;
-            //ViewBag.student = DataConnection.getStudent();
+            
             return View();
         }
 
@@ -26,8 +26,8 @@ namespace RevRegFinal.Controllers
         {
             string inpute = InputEmail;
             string inputp = InputPassword;
-            StudentModel student = DataConnection.getStudent(studentModelId);
-            CourseModel course = DataConnection.getCourse(Course);
+            StudentModel student = DataAccess.getStudent(studentModelId);
+            CourseModel course = DataAccess.getCourse(Course);
             student.AddCourse(course);
 
 
