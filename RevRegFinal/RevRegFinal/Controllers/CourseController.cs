@@ -22,10 +22,14 @@ namespace RevRegFinal.Controllers
             return View();
         }
 
-        public ActionResult AddCourse(string InputEmail, string InputPassword, CourseModel Course)
+        public ActionResult AddCourse(int studentModelId, string InputEmail, string InputPassword, string Course)
         {
             string inpute = InputEmail;
             string inputp = InputPassword;
+            StudentModel student = DataConnection.getStudent(studentModelId);
+            CourseModel course = DataConnection.getCourse(Course);
+            student.AddCourse(course);
+
 
 
             return RedirectToAction("Login", "Main",

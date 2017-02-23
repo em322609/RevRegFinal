@@ -72,7 +72,7 @@ namespace RevRegFinal.Models
 
         public void AddCourse(CourseModel course)
         {
-            if (course.isFull == false)
+            if (course.isClosed.Equals(0))
             {
                 DataConnection.RegisterStudentForCourse(course.CourseModelId, StudentModelId);
                 schedule.Add(course.CourseModelId, course);

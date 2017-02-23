@@ -130,8 +130,8 @@ namespace RevRegFinal.Models
                             string name = tempid;
                             string startTime = (string)reader["timeOfDay"];
                             string Location = (string)reader["Location"];
-                            int creditHours = (int)reader["CreditHours"];
-                            int numOfStudents = (int)reader["numOfStudents"];
+                            int creditHours = (int)reader["creditHour"];
+                            int numOfStudents = (int)reader["numStudents"];
                             int isClosed = (int)reader["isClosed"];
 
 
@@ -237,22 +237,26 @@ namespace RevRegFinal.Models
         {
             getCourse(courseID); //Will Throw IndexOutOfRange exception if the course is not found
             getStudent(studentID); //Will Throw IndexOUtOfRange exception if the student is not found
+
+            
             try
             {
-                using (SqlConnection con = new SqlConnection(connection))
+                string sqlCommand = "INSERT INTO [REGISTRATION] values (" + studentID + "," + "'"+ courseID + "');";
+                using (SqlConnection sqlcon = new SqlConnection(connection))
                 {
-
-                    SqlCommand cmd = new SqlCommand("RegisterStudentForCourse", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-
-                    cmd.Parameters.Add("@StudentModelId", SqlDbType.Int).Value = studentID;
-                    cmd.Parameters.Add("@CourseModelId", SqlDbType.NVarChar).Value = courseID;
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataSet ds = new DataSet();
-                    da.Fill(ds);
-                    return true;
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = new SqlCommand(sqlCommand, sqlcon);
+                    try
+                    {
+                        adapter.Fill(ds);
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+
+                        Console.WriteLine(e.Message);
+                    }
 
                 }
             }
@@ -260,6 +264,7 @@ namespace RevRegFinal.Models
             {
                 throw new InvalidOperationException(Errors.coundNotConnectToDatabase, e);
             }
+            return false;
 
 
         }

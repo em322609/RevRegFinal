@@ -28,7 +28,7 @@
             @foreach (var item in ViewBag.list)
             {
 
-                <tr onclick="location.href = '@(Url.Action("AddCourse", "Course", new { InputEmail = ViewData["inputEmail"], InputPassword = ViewData["inputPassword"] , Course = item}))'">
+                <tr onclick="location.href = '@(Url.Action("AddCourse", "Course", new { studentModelId = ViewData["studentModelId"], InputEmail = ViewData["inputEmail"], InputPassword = ViewData["inputPassword"] , Course = @item.CourseModelId}))'">
                     <td>@item.CourseModelId</td>
                     <td>@item.timeOfDay</td>
                     <td>@item.Location</td>
