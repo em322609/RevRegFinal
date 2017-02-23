@@ -54,7 +54,7 @@ namespace RevRegFinal.Models
 
         public bool enrollmentStatus { get; set; }
 
-        public void AddCourses(Dictionary<string, CourseModel> s)
+        public void AddCourses(List<CourseModel> s)
         {
             if (schedule.Count + s.Count <= Global.maxCourses)
             {
