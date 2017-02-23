@@ -13,15 +13,37 @@
 <body>
     <div> 
         <p>Here is a list of courses for you to choose from: </p>
-        <table class="table">
-            <tr>
+        <table class="table table-hover">
+           <thead>
+                 <tr>
                 <th>Course Name</th>
                 <th>Start Time</th>
                 <th>Location</th>
                 <th>Credit Hours</th>
                 <th>Number of Students</th>
                 <th>Status</th>
-            </tr>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in ViewBag.list)
+            {
+
+                
+                <tr>
+                    <td>@item.CourseModelId</td>
+                    <td>@item.timeOfDay</td>
+                    <td>@item.Location</td>
+                    <td>@item.creditHour</td>
+                    <td>@item.numStudents</td>
+                    @if(@item.isClosed.Equals(0)){
+                    <td>OPEN</td>
+                    }
+                    else{
+                    <td>CLOSED</td>
+                    }
+                </tr>
+            }
+                </tbody>
         </table>
     </div>
 </body>

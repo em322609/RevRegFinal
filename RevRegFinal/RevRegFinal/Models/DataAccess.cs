@@ -199,9 +199,38 @@ namespace RevRegFinal.Models
             return schedule;
 
         }
-       
-        
-       
+
+        public static List<CourseModel> getCourses()
+        {
+
+            List<CourseModel> courseList = new List<CourseModel>();
+            string query = "Select * From COURSEMODELS";
+
+            using (SqlConnection sqlcon = new SqlConnection(connection))
+            {
+                SqlCommand command = new SqlCommand(query, sqlcon);
+
+                sqlcon.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string tempid = (string)reader["CourseModelId"];
+
+                    string name = tempid;
+                    string startTime = (string)reader["timeOfDay"];
+                    string Location = (string)reader["Location"];
+                    int creditHours = (int)reader["creditHour"];
+                    int numOfStudents = (int)reader["numStudents"];
+                    int isClosed = (int)reader["isClosed"];
+
+
+                    courseList.Add(new CourseModel(name, startTime, Location, creditHours, numOfStudents, isClosed));
+
+                }
+                reader.Close();
+                return courseList;
+            }
+        }
  
      
         public static bool RegisterStudentForCourse(string courseID, int studentID)
