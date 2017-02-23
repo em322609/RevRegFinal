@@ -25,8 +25,10 @@ namespace RevRegFinal.Controllers
             
            if (DataConnection.CheckLogInInfo(student, InputEmail, InputPassword))
                     {
-                         ViewData["studentName"] = student.FullName;
-                
+                        ViewData["studentName"] = student.FullName;
+                        ViewData["studentModelId"] = student.StudentModelId;
+                        ViewData["inputEmail"] = InputEmail;
+                        ViewData["inputPassword"] = InputPassword;
 
                          Dictionary<string, CourseModel> s = student.GetSchedule();
                          ViewData["dictionaryCount"] = s.Count;

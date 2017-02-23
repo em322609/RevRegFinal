@@ -28,20 +28,23 @@
             @foreach (var item in ViewBag.list)
             {
 
-                
-                <tr>
+                <tr onclick="location.href = '@(Url.Action("AddCourse", "Course", new { InputEmail = ViewData["inputEmail"], InputPassword = ViewData["inputPassword"] , Course = item}))'">
                     <td>@item.CourseModelId</td>
                     <td>@item.timeOfDay</td>
                     <td>@item.Location</td>
                     <td>@item.creditHour</td>
                     <td>@item.numStudents</td>
-                    @if(@item.isClosed.Equals(0)){
+                    @if (@item.isClosed.Equals(0))
+                    {
                     <td>OPEN</td>
                     }
-                    else{
+                    else
+                    {
                     <td>CLOSED</td>
                     }
                 </tr>
+                
+
             }
                 </tbody>
         </table>

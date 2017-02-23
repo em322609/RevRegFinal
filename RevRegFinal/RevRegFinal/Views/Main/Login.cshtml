@@ -18,7 +18,7 @@
     </div>
     <div>
         
-        @using (Html.BeginForm("Courses", "Course"))
+        @using (Html.BeginForm("Courses", "Course", new { studentModelId = ViewData["studentModelId"] , inputEmail = ViewData["inputEmail"], inputPassword = ViewData["inputPassword"]}))
         {
             try
             {
