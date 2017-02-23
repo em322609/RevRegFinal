@@ -158,11 +158,11 @@ namespace RevRegFinal.Models
 
         }
         
-        public static Dictionary<string, CourseModel> getStudentSchedule(int idnum)
+        public static List<CourseModel> getStudentSchedule(int idnum)
         {
-            Dictionary<string, CourseModel> schedule = new Dictionary<string, CourseModel>();
+           List <CourseModel> schedule = new List<CourseModel>();
 
-            string query = $"Select * From [REGISTRATION] WITH [StudentModelId] = {idnum};";
+            string query = "Select * From [REGISTRATION] WHERE [StudentModelId] ="+idnum+";";
             try
             {
                 using (SqlConnection sqlcon = new SqlConnection(connection))
@@ -175,15 +175,11 @@ namespace RevRegFinal.Models
                     {
 
 
-                        string name = (string)reader["CourseModelId"];
-                        string startTime = (string)reader["timeOfDay"];
-                        string location = (string)reader["Location"];
-                        int creditHours = (int)reader["CreditHours"];
-                        int numOfStudents = (int)reader["numOfStudents"];
-                        int isClosed = (int)reader["isClosed"];
+                        string course = (string)reader["CourseModelId"];
+                        CourseModel tempCourse = getCourse(course);
 
 
-                        schedule.Add(name, new CourseModel(name, startTime, location, creditHours,numOfStudents,isClosed));
+                        schedule.Add(tempCourse);
 
 
 

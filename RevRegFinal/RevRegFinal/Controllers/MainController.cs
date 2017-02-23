@@ -30,8 +30,9 @@ namespace RevRegFinal.Controllers
                         ViewData["inputEmail"] = InputEmail;
                         ViewData["inputPassword"] = InputPassword;
 
-                         Dictionary<string, CourseModel> s = student.GetSchedule();
-                         ViewData["dictionaryCount"] = s.Count;
+                         List<CourseModel> s = student.GetSchedule(student.StudentModelId);
+                         ViewData["listCount"] = s.Count;
+                         ViewBag.list = s;
 
                          return View(student);
                     }

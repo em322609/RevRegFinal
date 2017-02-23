@@ -22,12 +22,38 @@
         {
             try
             {
-                if (ViewData["dictionaryCount"].Equals(0))
+                if (ViewData["listCount"].Equals(0))
                 {
              <p>You are not currently signed up for classes. Please sign up here:<button class="btn btn-info" type="submit">Sign up</button></p>
                 }
+                else
+                {
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Start Time</th>
+                                <th>Location</th>
+                                <th>Credit Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>  
+                        @foreach (var item in ViewBag.list)
+                                {
+                                <tr>
+                                    <td>@item.CourseModelId</td>
+                                    <td>@item.timeOfDay</td>
+                                    <td>@item.Location</td>
+                                    <td>@item.creditHour</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <button class="btn btn-info" type="submit">Register For More</button>
+
+                }
             }
-            catch(NullReferenceException ex)
+            catch (NullReferenceException ex)
             {
                 System.Console.Write(ex);
             }

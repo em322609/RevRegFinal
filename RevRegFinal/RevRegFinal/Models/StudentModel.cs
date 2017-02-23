@@ -16,7 +16,7 @@ namespace RevRegFinal.Models
 
         public string major;
         private bool isFullTime;
-        private Dictionary<string, CourseModel> schedule = new Dictionary<string, CourseModel>();
+        private List<CourseModel> schedule = new List<CourseModel>();
         
         public StudentModel(string fullname, string password, string email, int id, string major)
         {
@@ -61,7 +61,7 @@ namespace RevRegFinal.Models
             {
                 foreach (var item in schedule)
                 {
-                    AddCourse(item.Value);
+                    AddCourse(item);
                 }
             }
             else
@@ -75,7 +75,7 @@ namespace RevRegFinal.Models
             if (course.isClosed.Equals(0))
             {
                 DataConnection.RegisterStudentForCourse(course.CourseModelId, StudentModelId);
-                schedule.Add(course.CourseModelId, course);
+                schedule.Add(course);
             }
             else
             {
@@ -83,8 +83,9 @@ namespace RevRegFinal.Models
             }
         }
 
-        public Dictionary<string, CourseModel> GetSchedule()
+        public List<CourseModel> GetSchedule(int studentModelId)
         {
+            schedule = DataConnection.getStudentSchedule(studentModelId);
             return schedule;
         }
 
