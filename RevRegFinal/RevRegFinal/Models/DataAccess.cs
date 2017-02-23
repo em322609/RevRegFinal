@@ -14,15 +14,22 @@ namespace RevRegFinal.Models
     {
 
         private static string connection = "Data Source=revdb.camzcailekkc.us-west-2.rds.amazonaws.com,1433;Initial Catalog = RevRegMVC; Integrated Security = False; Persist Security Info=True;User ID = master; Password=12345678;Encrypt=False;";
+
+        //Accessor function to get connection string
         public static string GetConnection()
         {
             return connection;
         }
+
+        //helper function to set the connection string to string parameter s
         public static void SetConnection(string s)
         {
             connection = s;
         }
 
+
+        //verifyLogin will take incoming StudentModel object as well as email and password
+        //specified from Index input form to check whether or not that student exists in the DB
         public static bool verifyLogin(StudentModel student, string email, string password)
         {
             string query = "SELECT * FROM STUDENTMODELS";
@@ -47,8 +54,6 @@ namespace RevRegFinal.Models
                         student.Major = (string)item["Major"];
                         student.StudentModelId = (int)item[0];
                         
-                        
-                        //student.AddCourses(getStudentSchedule(student.StudentModelId));
                         return true;
                     }
                 }
@@ -57,6 +62,9 @@ namespace RevRegFinal.Models
 
             }
         }
+
+        //method that returns a given student from the DB specified by the primary key idnum
+        //will populate StudentModel object with Sql query results
         public static StudentModel getStudent(int idnum)
         {
 
@@ -107,7 +115,8 @@ namespace RevRegFinal.Models
 
 
         }
-        
+
+        //will return a CourseModel object specified by the courseModelId in the DB
         public static CourseModel getCourse(string idnum)
         {
             CourseModel tempCourse = new CourseModel();
@@ -157,7 +166,10 @@ namespace RevRegFinal.Models
             }
 
         }
-        
+
+
+        //Will return a list of courses that the student specified by idnum
+        //is registered for.
         public static List<CourseModel> getStudentSchedule(int idnum)
         {
            List <CourseModel> schedule = new List<CourseModel>();
@@ -228,7 +240,7 @@ namespace RevRegFinal.Models
             }
         }
  
-     
+        //will add studentmodelid value & coursemodelid value into the registration table in the DB
         public static bool RegisterStudentForCourse(string courseID, int studentID)
         {
             getCourse(courseID); //Will Throw IndexOutOfRange exception if the course is not found

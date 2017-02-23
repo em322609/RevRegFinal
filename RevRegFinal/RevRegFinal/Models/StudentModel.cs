@@ -15,7 +15,6 @@ namespace RevRegFinal.Models
         }
 
         public string major;
-        private bool isFullTime;
         private List<CourseModel> schedule = new List<CourseModel>();
         
         public StudentModel(string fullname, string password, string email, int id, string major)
