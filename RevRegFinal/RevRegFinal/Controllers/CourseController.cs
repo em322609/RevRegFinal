@@ -28,6 +28,8 @@ namespace RevRegFinal.Controllers
             string inputp = InputPassword;
             StudentModel student = DataAccess.getStudent(studentModelId);
             CourseModel course = DataAccess.getCourse(Course);
+
+            if(student.GetSchedule(studentModelId).Count < 6)
             student.AddCourse(course);
 
 
