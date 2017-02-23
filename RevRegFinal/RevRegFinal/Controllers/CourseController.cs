@@ -22,6 +22,9 @@ namespace RevRegFinal.Controllers
             return View();
         }
 
+        //add course will check whether or not the course being clicked is compatible to be added to 
+        //the student schedule based on the constraints listed int he requirements.
+
         public ActionResult AddCourse(int studentModelId, string InputEmail, string InputPassword, string Course)
         {
             string inpute = InputEmail;

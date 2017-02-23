@@ -19,6 +19,8 @@ namespace RevRegFinal.Controllers
             }
 
 
+            //Login will verify whether or not the student exists within the database and then redirect
+            //to the student portal
             public ActionResult Login(string InputEmail, string InputPassword)
             {
                     StudentModel student = new StudentModel();
