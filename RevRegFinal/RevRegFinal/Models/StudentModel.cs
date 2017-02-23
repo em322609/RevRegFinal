@@ -73,7 +73,7 @@ namespace RevRegFinal.Models
         {
             if (course.isClosed.Equals(0))
             {
-                DataAccess.RegisterStudentForCourse(course.CourseModelId, StudentModelId);
+                DataAccess.RegisterStudent(course.CourseModelId, StudentModelId);
                 schedule.Add(course);
             }
             else
