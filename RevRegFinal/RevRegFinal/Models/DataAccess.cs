@@ -243,13 +243,47 @@ namespace RevRegFinal.Models
         //will add studentmodelid value & coursemodelid value into the registration table in the DB
         public static bool RegisterStudentForCourse(string courseID, int studentID)
         {
-            getCourse(courseID); //Will Throw IndexOutOfRange exception if the course is not found
-            getStudent(studentID); //Will Throw IndexOUtOfRange exception if the student is not found
+            CourseModel c = getCourse(courseID); //Will Throw IndexOutOfRange exception if the course is not found
+           StudentModel s = getStudent(studentID); //Will Throw IndexOUtOfRange exception if the student is not found
 
             
             try
             {
                 string sqlCommand = "INSERT INTO [REGISTRATION] values (" + studentID + "," + "'"+ courseID + "');";
+                using (SqlConnection sqlcon = new SqlConnection(connection))
+                {
+                    DataSet ds = new DataSet();
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = new SqlCommand(sqlCommand, sqlcon);
+                    try
+                    {
+                        
+                        adapter.Fill(ds);
+                        UpdateCourseCount(c);
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+
+                        Console.WriteLine(e.Message);
+                    }
+
+                }
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new InvalidOperationException(Errors.coundNotConnectToDatabase, e);
+            }
+            return false;
+
+
+        }
+        
+        public static bool UpdateCourseCount(CourseModel course)
+        {
+            try
+            {
+                string sqlCommand = "UPDATE [COURSEMODELS] SET [numStudents] = [numStudents]+1 WHERE [courseModelId] ="+"'"+course.CourseModelId+"'"+";";
                 using (SqlConnection sqlcon = new SqlConnection(connection))
                 {
                     DataSet ds = new DataSet();
@@ -273,9 +307,6 @@ namespace RevRegFinal.Models
                 throw new InvalidOperationException(Errors.coundNotConnectToDatabase, e);
             }
             return false;
-
-
         }
-        
     }
 }
