@@ -28,8 +28,17 @@ namespace RevRegFinal.Controllers
             string inputp = InputPassword;
             StudentModel student = DataAccess.getStudent(studentModelId);
             CourseModel course = DataAccess.getCourse(Course);
+            List<CourseModel> list = student.GetSchedule(studentModelId);
 
-            if(student.GetSchedule(studentModelId).Count < 6)
+            foreach (var item in list)
+            {
+                if(item.timeOfDay == course.timeOfDay)
+                {
+                    return RedirectToAction("Login", "Main",
+                    new { InputEmail = inpute, InputPassword = inputp });
+                }
+            }
+            if (student.GetSchedule(studentModelId).Count < 6)
             student.AddCourse(course);
 
 
